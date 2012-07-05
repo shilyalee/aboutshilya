@@ -9,7 +9,9 @@ var express = require('express')
   , http = require('http')
   , mongoose = require('mongoose');
 
-  var db = mongoose.connect('mongodb://localhost/user', function(err) {
+  var db_uri = process.env.MONGOLAB_URI || process.env.MONGODB_URI || config.default_db_uri;
+  
+  var db = mongoose.connect(db_uri, function(err) {
     if (err) throw err;
   });
 
